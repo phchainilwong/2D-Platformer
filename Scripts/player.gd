@@ -6,6 +6,8 @@ extends CharacterBody2D
 @export var gravity : float = 500
 @export var jump_force : float = 200
 
+@export var health: int = 3
+
 var move_input : float
 
 @onready var sprite : Sprite2D = $Sprite
@@ -42,3 +44,16 @@ func _manage_animation_ ():
 		anim.play ("move")
 	else:
 		anim.play("idle")
+
+func take_damage (amount : int):
+	health -= amount
+	
+	if health <= 0:
+		call_deferred("game over")
+		
+func game_over ():
+	get_tree().change_scent_to_file("res://Scenes/level_1.tscn")
+
+func increase_score(amount : int):
+	print("increase score")
+	
