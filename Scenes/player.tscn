@@ -107,7 +107,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_3smsa")
 }
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("4_fkybt")
