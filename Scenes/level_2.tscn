@@ -15,25 +15,25 @@
 script = ExtResource("1_055b2")
 
 [node name="BackgroundSprite" type="Sprite2D" parent="Background"]
-modulate = Color(1, 1, 0.83137256, 1)
+modulate = Color(1, 0.73333335, 0.3882353, 1)
 position = Vector2(-343, -39)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_055b2")
 
 [node name="BackgroundSprite2" type="Sprite2D" parent="Background"]
-modulate = Color(1, 1, 0.83137256, 1)
+modulate = Color(1, 0.73333335, 0.3882353, 1)
 position = Vector2(139, -41)
 scale = Vector2(0.44140625, 0.49804685)
 texture = ExtResource("2_055b2")
 
 [node name="BackgroundSprite3" type="Sprite2D" parent="Background"]
-modulate = Color(1, 1, 0.83137256, 1)
+modulate = Color(1, 0.73333335, 0.3882353, 1)
 position = Vector2(564.5156, -42.992188)
 scale = Vector2(0.38967896, 0.49610132)
 texture = ExtResource("2_055b2")
 
 [node name="BackgroundSprite4" type="Sprite2D" parent="Background"]
-modulate = Color(1, 1, 0.83137256, 1)
+modulate = Color(1, 0.73333335, 0.3882353, 1)
 position = Vector2(-846, -43)
 scale = Vector2(0.484375, 0.49902344)
 texture = ExtResource("2_055b2")
@@ -72,6 +72,9 @@ position = Vector2(335, -5)
 
 [node name="Enemy4" parent="Enemies" instance=ExtResource("6_ait6c")]
 position = Vector2(455, -8)
+
+[node name="Enemy5" parent="Enemies" instance=ExtResource("6_ait6c")]
+position = Vector2(615, -3)
 
 [node name="Endflag" parent="." instance=ExtResource("7_vcilj")]
 position = Vector2(10, 1)

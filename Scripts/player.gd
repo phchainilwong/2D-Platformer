@@ -46,7 +46,6 @@ func _process (delta):
 	
 	if global_position.y > 200:
 		game_over()
-		game_over()
 		
 func _manage_animation_ ():
 	if not is_on_floor():
