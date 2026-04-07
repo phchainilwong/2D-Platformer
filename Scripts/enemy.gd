@@ -1,7 +1,7 @@
 extends Area2D
 
 @export var move_direction : Vector2
-@export var move_speed : float = 20
+@export var move_speed : float = 50
 
 @onready var start_pos : Vector2 = global_position
 @onready var target_pos : Vector2 = global_position + move_direction
