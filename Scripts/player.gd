@@ -8,8 +8,13 @@ signal OnUpdateScore (score : int)
 @export var braking : float = 20
 @export var gravity : float = 500
 @export var jump_force : float = 200
-
 @export var health: int = 3
+
+# --- New Power-up Variables ---
+var can_double_jump : bool = false
+var has_double_jump_powerup : bool = false
+var has_speed_boost : bool = false
+# ------------------------------
 
 var move_input : float
 
@@ -23,20 +28,30 @@ var coin_sfx : AudioStream = preload("res://Audio/coin.wav")
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
+	else:
+		# Reset the ability to double jump when we touch the ground
+		if has_double_jump_powerup:
+			can_double_jump = true
 	
 	move_input = Input.get_axis("move_left","move_right")
 	
-	if move_input != 0:
-		velocity.x = lerp(velocity.x, move_input * move_speed, acceleration * delta)
+	# If speed boost is active, we multiply the move_speed
+	var current_speed = move_speed * 2.0 if has_speed_boost else move_speed
 	
+	if move_input != 0:
+		velocity.x = lerp(velocity.x, move_input * current_speed, acceleration * delta)
 	else:
 		velocity.x = lerp(velocity.x, 0.0, braking * delta)
 	
-	if Input.is_action_pressed("jump") and is_on_floor():
-		velocity.y = -jump_force
+	# Updated Jump Logic for Double Jump
+	if Input.is_action_just_pressed("jump"):
+		if is_on_floor():
+			velocity.y = -jump_force
+		elif can_double_jump:
+			velocity.y = -jump_force
+			can_double_jump = false # Consume the double jump
 	
 	move_and_slide()
-
 
 func _process (delta):
 	if velocity.x != 0:
@@ -71,7 +86,27 @@ func increase_score(amount : int):
 	PlayerStats.score += amount
 	OnUpdateScore.emit(PlayerStats.score)
 	play_sound(coin_sfx)
+	# Trigger the powerup logic
+	_apply_random_powerup()
+
+func _apply_random_powerup():
+	var roll = randi() % 2 # 0 or 1
 	
+	if roll == 0:
+		# SPEED BOOST
+		has_speed_boost = true
+		sprite.modulate = Color.CYAN # Visual feedback
+		await get_tree().create_timer(5.0).timeout 
+		has_speed_boost = false
+		sprite.modulate = Color.WHITE
+	else:
+		# DOUBLE JUMP
+		has_double_jump_powerup = true
+		sprite.modulate = Color.GOLD # Visual feedback
+		await get_tree().create_timer(5.0).timeout
+		has_double_jump_powerup = false
+		sprite.modulate = Color.WHITE
+
 func _damage_flash ():
 	sprite.modulate = Color.RED
 	await get_tree().create_timer(0.05).timeout
