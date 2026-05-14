@@ -9,6 +9,9 @@ signal OnUpdateScore (score : int)
 @export var gravity : float = 500
 @export var jump_force : float = 200
 @export var health: int = 3
+@export var bullet_scene : PackedScene = preload("res://Scenes/Shuriken.tscn")
+@export var ammo : int = 10
+signal OnUpdateAmmo (count : int)
 
 # --- New Power-up Variables ---
 var can_double_jump : bool = false
@@ -35,7 +38,7 @@ func _physics_process(delta):
 	
 	move_input = Input.get_axis("move_left","move_right")
 	
-	# If speed boost is active, we multiply the move_speed
+	# If speed boost is active, multiply the move_speed
 	var current_speed = move_speed * 2.0 if has_speed_boost else move_speed
 	
 	if move_input != 0:
@@ -55,13 +58,32 @@ func _physics_process(delta):
 
 func _process (delta):
 	if velocity.x != 0:
+		# Keep your flipping logic
 		sprite.flip_h = velocity.x > 0
 		
 	_manage_animation_()
 	
+	# --- SHOOTING CHECK ---
+	if Input.is_action_just_pressed("shoot") and ammo > 0:
+		shoot()
+	# -----------------------------------
+	
 	if global_position.y > 200:
 		game_over()
-		
+
+# Shoot function
+func shoot():
+	ammo -= 1
+	OnUpdateAmmo.emit(ammo)
+	
+	var b = bullet_scene.instantiate()
+	
+	# Set bullet position to player position
+	b.global_position = global_position 
+	b.direction = 1.0 if sprite.flip_h else -1.0
+	
+	# Add the bullet to the level, not the player
+	get_parent().add_child(b)
 func _manage_animation_ ():
 	if not is_on_floor():
 		anim.play("jump")
@@ -95,14 +117,14 @@ func _apply_random_powerup():
 	if roll == 0:
 		# SPEED BOOST
 		has_speed_boost = true
-		sprite.modulate = Color.CYAN # Visual feedback
+		sprite.modulate = Color.CYAN 
 		await get_tree().create_timer(5.0).timeout 
 		has_speed_boost = false
 		sprite.modulate = Color.WHITE
 	else:
 		# DOUBLE JUMP
 		has_double_jump_powerup = true
-		sprite.modulate = Color.GOLD # Visual feedback
+		sprite.modulate = Color.GOLD
 		await get_tree().create_timer(5.0).timeout
 		has_double_jump_powerup = false
 		sprite.modulate = Color.WHITE

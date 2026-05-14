@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://ds75lvm8eqf4l"]
+[gd_scene load_steps=9 format=4 uid="uid://ds75lvm8eqf4l"]
 
 [ext_resource type="Script" uid="uid://b8qko3r2kqddy" path="res://Scripts/background_parallax.gd" id="1_lsmp6"]
 [ext_resource type="Texture2D" uid="uid://daddmg1hkc27d" path="res://Sprites/Backgrounds/backgroundForest.png" id="1_xfk5q"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://bj2wjre1h6or3" path="res://Scenes/coin.tscn" id="5_6444e"]
 [ext_resource type="PackedScene" uid="uid://cqy62qetvo18d" path="res://Scenes/endflag.tscn" id="6_evi0p"]
 [ext_resource type="PackedScene" uid="uid://c8ta1wr1gs2vo" path="res://Scenes/level_2.tscn" id="8_xrdnt"]
-[ext_resource type="Texture2D" uid="uid://63p55bevae7j" path="res://Sprites/shuriken.png" id="9_wrinw"]
 
 [node name="Main" type="Node2D"]
 
@@ -93,10 +92,3 @@ position = Vector2(-225, -30)
 [node name="Endflag" parent="." instance=ExtResource("6_evi0p")]
 position = Vector2(237, 0)
 scene_to_load = ExtResource("8_xrdnt")
-
-[node name="Bullet" type="Area2D" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="Bullet"]
-texture = ExtResource("9_wrinw")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bullet"]

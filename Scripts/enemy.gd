@@ -24,3 +24,7 @@ func _on_body_entered(body):
 		return
 		
 	body.take_damage(1)
+	
+func die():
+	# You can add death particles or sound here
+	queue_free()
