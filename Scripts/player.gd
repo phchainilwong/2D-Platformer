@@ -21,7 +21,7 @@ var has_speed_boost : bool = false
 
 var move_input : float
 
-@onready var sprite : Sprite2D = $Sprite
+@onready var sprite: Sprite2D = $Sprite2D
 @onready var anim : AnimationPlayer = $AnimationPlayer
 @onready var audio : AudioStreamPlayer = $AudioStreamPlayer
 
@@ -58,8 +58,8 @@ func _physics_process(delta):
 
 func _process (delta):
 	if velocity.x != 0:
-		# Keep your flipping logic
-		sprite.flip_h = velocity.x > 0
+		#Keep your flipping logic
+		sprite.flip_h = velocity.x < 0
 		
 	_manage_animation_()
 	
@@ -80,7 +80,7 @@ func shoot():
 	
 	# Set bullet position to player position
 	b.global_position = global_position 
-	b.direction = 1.0 if sprite.flip_h else -1.0
+	b.direction = -1.0 if sprite.flip_h else 1.0
 	
 	# Add the bullet to the level, not the player
 	get_parent().add_child(b)
