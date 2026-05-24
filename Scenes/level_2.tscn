@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bj2wjre1h6or3" path="res://Scenes/coin.tscn" id="5_t7v2y"]
 [ext_resource type="PackedScene" uid="uid://u2b4k6a5qm08" path="res://Scenes/enemy.tscn" id="6_ait6c"]
 [ext_resource type="PackedScene" uid="uid://cqy62qetvo18d" path="res://Scenes/endflag.tscn" id="7_vcilj"]
-[ext_resource type="PackedScene" uid="uid://cw7lp67vp5x13" path="res://Scenes/menu.tscn" id="8_2mgoq"]
+[ext_resource type="PackedScene" uid="uid://cnncl5gv36lae" path="res://Scenes/level_3.tscn" id="8_2mgoq"]
 
 [node name="Main" type="Node2D"]
 
@@ -43,7 +43,7 @@ tile_map_data = PackedByteArray("AADo//3/AAABAAMAAADp//3/AAACAAMAAADq//3/AAADAAM
 tile_set = ExtResource("3_uhnj4")
 
 [node name="Player" parent="." instance=ExtResource("4_42uki")]
-position = Vector2(-1018, 1)
+position = Vector2(-1014, 1)
 jump_force = 250.0
 
 [node name="Coins" type="Node" parent="."]

@@ -10,8 +10,23 @@
 [ext_resource type="Texture2D" uid="uid://b82bxim3tqp3v" path="res://Sprites/Characters/characterrunning4.png" id="6_8erm5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cvnsp"]
-radius = 11.0
-height = 46.0
+radius = 9.0
+height = 36.0
+
+[sub_resource type="Animation" id="Animation_x3wgy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_fkybt")]
+}
 
 [sub_resource type="Animation" id="Animation_fkybt"]
 resource_name = "idle"
@@ -29,8 +44,8 @@ tracks/0/keys = {
 "values": [ExtResource("2_fkybt")]
 }
 
-[sub_resource type="Animation" id="Animation_x3wgy"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_f1ek2"]
+resource_name = "jump"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -41,7 +56,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_fkybt")]
+"values": [ExtResource("6_8erm5")]
 }
 
 [sub_resource type="Animation" id="Animation_3smsa"]
@@ -61,21 +76,6 @@ tracks/0/keys = {
 "values": [ExtResource("4_x3wgy"), ExtResource("5_3smsa")]
 }
 
-[sub_resource type="Animation" id="Animation_f1ek2"]
-resource_name = "jump"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("6_8erm5")]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8erm5"]
 _data = {
 &"RESET": SubResource("Animation_x3wgy"),
@@ -93,11 +93,12 @@ shadow_color = Color(0, 0, 0, 0.4862745)
 script = ExtResource("1_cvnsp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -25)
+position = Vector2(-1.9073486e-06, -17.000002)
+scale = Vector2(0.734375, 0.734375)
 texture = ExtResource("2_fkybt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -23)
+position = Vector2(0, -17)
 shape = SubResource("CapsuleShape2D_cvnsp")
 
 [node name="Camera2D" type="Camera2D" parent="."]

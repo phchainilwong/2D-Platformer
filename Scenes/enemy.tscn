@@ -1,66 +1,67 @@
 [gd_scene load_steps=9 format=3 uid="uid://u2b4k6a5qm08"]
 
 [ext_resource type="Script" uid="uid://yvtkn3roaqf" path="res://Scripts/enemy.gd" id="1_287tu"]
-[ext_resource type="Texture2D" uid="uid://cw8ve08co5tms" path="res://Sprites/Characters/character_0024.png" id="2_0830c"]
-[ext_resource type="Texture2D" uid="uid://7j5f58v817vc" path="res://Sprites/Characters/character_0025.png" id="3_ghaa6"]
-[ext_resource type="Texture2D" uid="uid://ccpqftl2qj5by" path="res://Sprites/Characters/character_0026.png" id="4_1dp5w"]
+[ext_resource type="Texture2D" uid="uid://bm8am8lr3jc12" path="res://Sprites/Characters/Ghost 1.png" id="2_287tu"]
+[ext_resource type="Texture2D" uid="uid://dw1e6is4ofc3t" path="res://Sprites/Characters/Ghost 2.png" id="3_0830c"]
+[ext_resource type="Texture2D" uid="uid://rg1lo6klfjrn" path="res://Sprites/Characters/Ghost 3.png" id="4_ghaa6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lsmp6"]
-radius = 8.0
+radius = 11.0
 
-[sub_resource type="Animation" id="Animation_chwpn"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_0830c")]
-}
-
-[sub_resource type="Animation" id="Animation_wrinw"]
+[sub_resource type="Animation" id="Animation_1dp5w"]
 resource_name = "fly"
 length = 0.4
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:texture")
+tracks/0/path = NodePath("Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.13333334, 0.26666668),
+"times": PackedFloat32Array(0, 0.16666667, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ExtResource("2_0830c"), ExtResource("3_ghaa6"), ExtResource("4_1dp5w")]
+"values": [ExtResource("2_287tu"), ExtResource("3_0830c"), ExtResource("4_ghaa6")]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_af3po"]
+[sub_resource type="Animation" id="Animation_auwsv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_287tu")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8uf12"]
 _data = {
-&"RESET": SubResource("Animation_chwpn"),
-&"fly": SubResource("Animation_wrinw")
+&"RESET": SubResource("Animation_auwsv"),
+&"fly": SubResource("Animation_1dp5w")
 }
 
 [node name="Enemy" type="Area2D" groups=["Enemy"]]
 script = ExtResource("1_287tu")
 move_direction = Vector2(0, -50)
 
-[node name="Sprite" type="Sprite2D" parent="."]
-position = Vector2(-278, 21)
-texture = ExtResource("2_0830c")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-273.7015, 23.298496)
+scale = Vector2(0.07801006, 0.07801007)
+texture = ExtResource("2_287tu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-278, 21)
+position = Vector2(-272, 24)
 shape = SubResource("CircleShape2D_lsmp6")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-&"": SubResource("AnimationLibrary_af3po")
+&"": SubResource("AnimationLibrary_8uf12")
 }
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
