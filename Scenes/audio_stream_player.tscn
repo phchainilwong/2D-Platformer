@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bs3sqo5i60f4e"]
+
+[ext_resource type="AudioStream" uid="uid://dyhpci3cw3n8j" path="res://Audio/04. Main Theme.mp3" id="1_px1li"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_px1li")
+volume_db = -10.0
+autoplay = true
+bus = &"Music"
+parameters/looping = true
