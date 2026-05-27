@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=4 uid="uid://ds75lvm8eqf4l"]
+[gd_scene load_steps=10 format=4 uid="uid://ds75lvm8eqf4l"]
 
 [ext_resource type="Script" uid="uid://b8qko3r2kqddy" path="res://Scripts/background_parallax.gd" id="1_lsmp6"]
+[ext_resource type="Script" uid="uid://dmksxqdhs0xpc" path="res://Scenes/level_1.gd" id="1_wrinw"]
 [ext_resource type="Texture2D" uid="uid://daddmg1hkc27d" path="res://Sprites/Backgrounds/backgroundForest.png" id="1_xfk5q"]
 [ext_resource type="TileSet" uid="uid://bphy4st8ym4ie" path="res://Sprites/Tiles/new_tile_set.tres" id="2_7p6j4"]
 [ext_resource type="PackedScene" uid="uid://dv0g1jn3n7ini" path="res://Scenes/player.tscn" id="3_6444e"]
@@ -10,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c8ta1wr1gs2vo" path="res://Scenes/level_2.tscn" id="8_xrdnt"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_wrinw")
 
 [node name="Background" type="Node2D" parent="."]
 script = ExtResource("1_lsmp6")
@@ -36,6 +38,12 @@ texture = ExtResource("1_xfk5q")
 modulate = Color(0.17254902, 0.7058824, 0.3882353, 1)
 position = Vector2(-846, -43)
 scale = Vector2(0.484375, 0.49902344)
+texture = ExtResource("1_xfk5q")
+
+[node name="BackgroundForest" type="Sprite2D" parent="Background"]
+modulate = Color(0.17254902, 0.7058824, 0.3882353, 1)
+position = Vector2(-1340.625, -42.625008)
+scale = Vector2(0.4992676, 0.4992676)
 texture = ExtResource("1_xfk5q")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
