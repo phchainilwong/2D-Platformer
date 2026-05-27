@@ -9,7 +9,7 @@ extends Node2D
 	"TUTORIAL: If Jinichi turns yellow, DOUBLE JUMP. If he turns blue, DOUBLE SPEED",
 	"JINICHI: My village was destroyed during a war, and I was raised by the Chai Empire after becoming the sole survivor.",
 	"JINICHI: Believing a rival empire was responsible, I trained my entire life to become the world's greatest ninja.",
-	"JINICHI: Jinichi: Now, my journey begins as I search for the truth behind my village's destruction.",
+	"JINICHI: Now, my journey begins as I search for the truth behind my village's destruction.",
 	"JINICHI: The enemy think they are safe in the dark... but the shadows belong to me. Let's begin."
 ]
 
